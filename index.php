@@ -227,3 +227,148 @@ foreach($man  as $key=>$value){
     echo '<div>'.__LINE__.': '.$titles[$key].' - '.$value.'</div>';
 }
 ?>
+
+<?php
+//                                         Третье зантяие PHP
+
+$strok = 'StringFor';
+echo '<div>'.$strok.'</div>';
+print '<div>'.$strok.'</div>';
+
+
+//str_replace- функция замены части содержимого строки
+$strok = str_replace('For','777',$strok);
+echo '<div>'.$strok.'</div>';
+
+//str_shuffle- функция перемешивания символов в строке
+$strok = str_shuffle($strok);
+echo '<div>'.$strok.'</div>';
+
+//str_split- превращает символы строки в переменной, в МАССИВ с строковыми символами
+$strok = str_split($strok);
+echo '<pre>';
+print_r ($strok);
+echo'</pre>';
+
+//strpos- ф-ия определяет на какой позиции в СТРОКЕ ПЕРВЫЙ раз встречается интересующий нас символ
+$strok2 = 'Stroki979';
+$sypo = strpos($strok2, '7');
+echo '<div>'.$sypo.'</div>';
+
+//strrpos- ф-ия определяет на какой позиции в СТРОКЕ ПОСЛЕДНИЙ раз встречается интересующий нас символ
+$strok3 = 'Stroki979';
+$strok3 .='text7';
+$sypo = strrpos($strok3, '7');
+echo '<div>'.$sypo.'</div>';
+
+//strlen- функция определяющая длину строки (кол-во символов)
+$sle = strlen($strok2);
+echo '<div>Кол-во смволов в строке- '.$sle.'</div>';
+
+//substr- записывает в переменную часть существующей строки
+$sub = substr($strok3, '6',3);
+echo '<div>'.$sub.'</div>';
+
+//trim- удаляет  начальные и конечные пробелы из строки
+$strok4 = 'ggg';
+$strok4 = '      '.$strok4.'      ';
+echo '<div>'.$strok4.'</div>';
+echo '<pre>'.$strok4.'</pre>';
+$strok4 = trim($strok4);
+echo '<pre>'.$strok4.'</pre>';
+
+//еще немного о массивах
+$massiv5 = array(4, 56.7,true, 'words');
+echo '<pre>';
+print_r ($massiv5);
+echo'</pre>';
+$massiv5[]= '+++';//Такая форма записи позволяет добавить элемент в существующий массив
+echo '<pre>';
+print_r ($massiv5);
+echo'</pre>';
+$massiv5[1]= 'Элемент изменен';//Такая форма записи позволяет изменить существующий элмемент массива
+echo '<pre>';
+print_r ($massiv5);
+echo'</pre>';
+$massiv5['ключ элемента']= 'сам элемент';//Такая форма записи позволяет добавить подписанный элемент (с ключем), по сути, матрица становится ассоциативной
+echo '<pre>';
+print_r ($massiv5);
+echo'</pre>';
+$massiv5[]= 'еще элемент';//будет пронумерован следующим числом из числовой подписи, игнорируя ассоциативный ключ
+echo '<pre>';
+print_r ($massiv5);
+echo'</pre>';
+
+foreach($massiv5 as $key=>$value){
+    echo '<div>'.$key.': '.$value.' = '.$massiv5[$key].'</div>';
+};
+
+//Ассоциативная матрица
+$assoc = array(
+        'name'=>'Евлампий',
+        'age'=>33,
+);
+foreach($assoc as $key=>$value){
+    echo '<div>'.$key.': '.$value.'</div>';
+};
+
+//Матрицы как элементы родительской матрицы
+$peoples = array (
+         array(
+        'name'=>'Евлампий',
+        'age'=>33,
+        ),
+        array(
+        'name'=>'Ашот',
+        'age'=>45,
+        ),
+         array(
+        'name'=>'Женя',
+        'age'=>22,
+        ),
+);
+$midle=0;
+foreach ($peoples as $npoz=>$man){//цикл перебирает элементы родительской матрицы ($peoples)
+    echo '<div>'.$npoz.': ';
+    $midle +=$man['age'];
+    foreach($man as $key=>$value){//цикл перебирает элементы дочерней матрицы ($man)
+        echo "<span>$key- $value </span>";
+    }
+    echo '</div>';
+}
+$midle = $midle / sizeof($peoples);
+echo '<div>Средний возраст людей- '.$midle.'</div>';
+
+$students =array (
+        array (
+                'name'=> 'Макс',
+                //'scores'=> array(3,5,4,),
+        ),
+         array (
+                 'name'=> 'Игорь',
+                //'scores'=> array(3,2,4,),
+         ),
+         array (
+              'name'=> 'Дима',
+              //'scores'=> array(5,5,4,),
+         ),
+);
+foreach($students as $man){
+    for ($i=0;$i < rand(3,7);$i++){
+        if (empty($man['scores'])){//empty и isset, альтернативный способ задания оценок
+            $man['scores'] = array();
+        }
+        $man['scores'][] = rand(1,5);
+    }
+    $size = sizeof($man['scores']);
+    $scores = implode(', ',$man['scores']);//Функция implode переводит тип данных из МАССИВа в СТРОЧНЫЙ
+    $midle = array_sum($man['scores'])/sizeof($man['scores']);//функция array_sum суммирует все элементы массива
+    $midle2 = round($midle) - $midle;//функция round округляет число до целого значения
+    if($midle2>0){
+        $midle = ceil($midle).'- ';//функция ceil округляет число до целого значения в большую сторону
+    }elseif($midle2<0){
+        $midle = floor($midle).'+ ';//функция floor округляет число до целого значения в меньшую сторону
+    }
+    echo "<div>Студент {$man['name']} имеет оценки: {$scores} ({$size} оценок), средний балл: {$midle} </div>";
+}
+?>
