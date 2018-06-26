@@ -371,4 +371,133 @@ foreach($students as $man){
     }
     echo "<div>Студент {$man['name']} имеет оценки: {$scores} ({$size} оценок), средний балл: {$midle} </div>";
 }
+//                                         Четвертое занятие PHP
+$array = array('php','HTML','css',);
+
+echo 'Текущий элемент: '.current($array).'<br>';
+echo 'Следующий элемент: '.next($array).'<br>';
+echo 'Предыдущий элемент: '.prev($array).'<br>';
+echo 'Последний элемент: '.end($array).'<br>';
+echo 'Снова к первому элементу: '.reset($array).'<br>';
+
+echo '<pre>';
+print_r($array);
+echo '</pre>';
+
+$string33 = implode(', ',$array);
+echo "<div>$string33</div>";
+
+$new_arr = explode(',',$string33);
+/*foreach($new_arr as $i=>$znach){
+    $new_arr[$i] = trim($znach);
+};*/
+
+$new_arr = array_map('trim',$new_arr);
+
+echo '<pre>';
+print_r($new_arr);
+echo '</pre>';
+
+echo '<hr>';
+
+$arr_44 = [
+        'raz'=>'odin',
+        'dva'=>'two',
+        'tri'=>'three',
+];
+extract($arr_44);
+
+echo "<div>$raz</div>";
+echo "<div>$dva</div>";
+echo "<div>$tri</div>";
+
+$arr_55 = compact('tri', 'dva', 'raz');
+echo '<hr>';
+echo '<pre>';
+print_r($arr_55);
+echo '</pre>';
+
+$arr_6 = array_slice($arr_55, 0, 2);
+echo '<hr>';
+echo '<pre>';
+print_r($arr_6);
+echo '</pre>';
+
+$arr_7 = ['4',
+        '5',
+        '6',];
+$arr_6[0] = 787;
+$arr_8 = ['dva'=>'perezapis'];
+
+$arr_7 = array_merge($arr_6, $arr_7, $arr_8);
+echo '<hr>';
+echo __LINE__;
+echo '<pre>';
+print_r($arr_7);
+echo '</pre>';
+
+$arr_8=[
+        're'=>'111',
+        '2'=>'222',
+        'we'=>'333',
+];
+$arr_9=[
+    're'=>'444',
+    '2'=>'555',
+    '4'=>'666',
+];
+foreach($arr_8 as $q=>$w){
+    if(!empty($arr_9[$q])&& !is_numeric($q)){
+        $q .='_double';
+    };
+    $arr_9[$q]=$w;
+};
+echo '<hr>';
+echo '<pre>';
+print_r($arr_9);
+echo '</pre>';
+
+echo __LINE__;
+echo '<hr>';
+$chto_1 =[
+        'qwer',
+        'asdf',
+        'zxcv',
+];
+$chto_2 =[
+    'qwer',
+    'as',
+    'zx',
+];
+$dif = array_diff ($chto_1, $chto_2);
+echo '<pre>';
+print_r($dif);
+echo '</pre>';
+
+echo __LINE__;
+echo '<hr>';
+$chto_3 =[
+    'qwer',
+    'asdf',
+    'tg'=>'zxcv',
+];
+$chto_4 =[
+    'qwer',
+    'tg'=>'as',
+    'zx',
+];
+$dif_2 = array_diff_assoc ($chto_3, $chto_4);
+$dif_3 = array_intersect ($chto_3, $chto_4);
+echo '<pre>';
+print_r($dif_2);
+echo '</pre>';
+echo '<pre>';
+print_r($dif_3);
+echo '</pre>';
+
+$sum= array_sum ([3,3,3,1,]);
+echo '<hr>'.__LINE__.': '.$sum.' Сумма всех элементов';
+echo '<hr>'.__LINE__.': ';
+print_r (array_unique([3,3,3,1,]));
+echo ' УНИКАЛЬНЫЕ элементы';
 ?>
