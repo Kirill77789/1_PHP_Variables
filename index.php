@@ -355,7 +355,7 @@ $students =array (
 );
 foreach($students as $man){
     for ($i=0;$i < rand(3,7);$i++){
-        if (empty($man['scores'])){//empty и isset, альтернативный способ задания оценок
+        if (empty($man['scores'])){//empty- проыеряет пуста ли переменная и isset- Определяет, была ли установлена переменная значением, отличным от NULL
             $man['scores'] = array();
         }
         $man['scores'][] = rand(1,5);
@@ -371,14 +371,16 @@ foreach($students as $man){
     }
     echo "<div>Студент {$man['name']} имеет оценки: {$scores} ({$size} оценок), средний балл: {$midle} </div>";
 }
+
+
 //                                         Четвертое занятие PHP
 $array = array('php','HTML','css',);
 
-echo 'Текущий элемент: '.current($array).'<br>';
-echo 'Следующий элемент: '.next($array).'<br>';
-echo 'Предыдущий элемент: '.prev($array).'<br>';
-echo 'Последний элемент: '.end($array).'<br>';
-echo 'Снова к первому элементу: '.reset($array).'<br>';
+echo 'Текущий элемент: '.current($array).'<br>'; //функция current возвращает текцщий элемент массива
+echo 'Следующий элемент: '.next($array).'<br>';//ф-ия next сдвигает внутренний указатель массива с текущего на следующий и возращает его значение
+echo 'Предыдущий элемент: '.prev($array).'<br>';//ф-ия next сдвигает внутренний указатель массива с текущего на предыдущий и возращает его значение
+echo 'Последний элемент: '.end($array).'<br>';//ф-ия next сдвигает внутренний указатель массива с текущего на последний и возращает его значение
+echo 'Снова к первому элементу: '.reset($array).'<br>';//ф-ия next сдвигает (сбрасывает) внутренний указатель массива с текущего на первый и возращает его значение
 
 echo '<pre>';
 print_r($array);
@@ -387,12 +389,12 @@ echo '</pre>';
 $string33 = implode(', ',$array);
 echo "<div>$string33</div>";
 
-$new_arr = explode(',',$string33);
+$new_arr = explode(',',$string33);//Функция explode переводит строку в массив строк
 /*foreach($new_arr as $i=>$znach){
     $new_arr[$i] = trim($znach);
 };*/
 
-$new_arr = array_map('trim',$new_arr);
+$new_arr = array_map('trim',$new_arr);//ф-ия array_map обрабатывает элементы массива функцией вписанной в CALLBACK
 
 echo '<pre>';
 print_r($new_arr);
@@ -405,19 +407,19 @@ $arr_44 = [
         'dva'=>'two',
         'tri'=>'three',
 ];
-extract($arr_44);
+extract($arr_44);// ф-ия extract импортирует переменные из массива за его пределы в PHP
 
 echo "<div>$raz</div>";
 echo "<div>$dva</div>";
 echo "<div>$tri</div>";
 
-$arr_55 = compact('tri', 'dva', 'raz');
+$arr_55 = compact('tri', 'dva', 'raz');//compact — Создает массив, содержащий названия переменных и их значения
 echo '<hr>';
 echo '<pre>';
 print_r($arr_55);
 echo '</pre>';
 
-$arr_6 = array_slice($arr_55, 0, 2);
+$arr_6 = array_slice($arr_55, 0, 2);//Возвращает срез массива  от значения прописанного в offset, длинной length
 echo '<hr>';
 echo '<pre>';
 print_r($arr_6);
@@ -429,7 +431,7 @@ $arr_7 = ['4',
 $arr_6[0] = 787;
 $arr_8 = ['dva'=>'perezapis'];
 
-$arr_7 = array_merge($arr_6, $arr_7, $arr_8);
+$arr_7 = array_merge($arr_6, $arr_7, $arr_8);//Сливает массивы в один
 echo '<hr>';
 echo __LINE__;
 echo '<pre>';
@@ -447,7 +449,7 @@ $arr_9=[
     '4'=>'666',
 ];
 foreach($arr_8 as $q=>$w){
-    if(!empty($arr_9[$q])&& !is_numeric($q)){
+    if(!empty($arr_9[$q])&& !is_numeric($q)){//is_numeric — Проверяет, является ли переменная числом или строкой, содержащей число
         $q .='_double';
     };
     $arr_9[$q]=$w;
@@ -469,7 +471,7 @@ $chto_2 =[
     'as',
     'zx',
 ];
-$dif = array_diff ($chto_1, $chto_2);
+$dif = array_diff ($chto_1, $chto_2);//array_diff — Вычислияет расхождение массивов, возвращает элементы не содержащиеся в других массивах
 echo '<pre>';
 print_r($dif);
 echo '</pre>';
@@ -486,8 +488,8 @@ $chto_4 =[
     'tg'=>'as',
     'zx',
 ];
-$dif_2 = array_diff_assoc ($chto_3, $chto_4);
-$dif_3 = array_intersect ($chto_3, $chto_4);
+$dif_2 = array_diff_assoc ($chto_3, $chto_4);//В отличие от array_diff(), ключи также участвуют в сравнении.
+$dif_3 = array_intersect ($chto_3, $chto_4);// array_intersect() возвращает массив значений, содержащихся во всех массивах
 echo '<pre>';
 print_r($dif_2);
 echo '</pre>';
